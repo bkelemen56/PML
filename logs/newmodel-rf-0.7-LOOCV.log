@@ -1,0 +1,8 @@
+INFO [2016-02-23 23:28:01] Start analysis
+INFO [2016-02-23 23:28:01] Processing model: newmodel-rf-0.7-LOOCV
+INFO [2016-02-23 23:28:01] Read datasets
+INFO [2016-02-23 23:28:03]   training has 13453 rows
+INFO [2016-02-23 23:28:03]   testing has 5763 rows
+INFO [2016-02-23 23:28:03] Start training newmodel-rf-0.7-LOOCV
+
+Aborted next day 8:00 AM

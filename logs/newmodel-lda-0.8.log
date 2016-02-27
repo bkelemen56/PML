@@ -1,0 +1,106 @@
+INFO [2016-02-26 07:07:18] Start analysis
+INFO [2016-02-26 07:07:18] Processing model: newmodel-lda-0.8
+INFO [2016-02-26 07:07:18] Read datasets
+INFO [2016-02-26 07:07:19]   training has 15375 rows
+INFO [2016-02-26 07:07:19]   testing has 3841 rows
+INFO [2016-02-26 07:07:19] Start training newmodel-lda-0.8
+Loading required package: MASS
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+INFO [2016-02-26 07:07:23] Finished training newmodel-lda-0.8
+INFO [2016-02-26 07:07:23] Training results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    A    B    C    D    E
+         A 3583   97  348  333   16
+         B  456 1911  350  116  142
+         C  262  253 1774  323   70
+         D  149   99  299 1869  102
+         E  101  493  258  264 1707
+
+Overall Statistics
+                                         
+               Accuracy : 0.7053         
+                 95% CI : (0.698, 0.7125)
+    No Information Rate : 0.296          
+    P-Value [Acc > NIR] : < 2.2e-16      
+                                         
+                  Kappa : 0.6271         
+ Mcnemar's Test P-Value : < 2.2e-16      
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.7873   0.6698   0.5857   0.6434   0.8380
+Specificity            0.9266   0.9150   0.9265   0.9480   0.9163
+Pos Pred Value         0.8186   0.6424   0.6614   0.7423   0.6047
+Neg Pred Value         0.9120   0.9240   0.9011   0.9194   0.9737
+Prevalence             0.2960   0.1856   0.1970   0.1889   0.1325
+Detection Rate         0.2330   0.1243   0.1154   0.1216   0.1110
+Detection Prevalence   0.2847   0.1935   0.1744   0.1638   0.1836
+Balanced Accuracy      0.8570   0.7924   0.7561   0.7957   0.8772
+
+INFO [2016-02-26 07:07:23] Testing results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction   A   B   C   D   E
+         A 888  20  91  91   4
+         B 114 473  87  31  38
+         C  72  70 415  94  19
+         D  37  34  65 467  26
+         E  27 112  58  66 442
+
+Overall Statistics
+                                          
+               Accuracy : 0.699           
+                 95% CI : (0.6843, 0.7135)
+    No Information Rate : 0.2963          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.6191          
+ Mcnemar's Test P-Value : < 2.2e-16       
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.7803   0.6671   0.5796   0.6235   0.8355
+Specificity            0.9238   0.9138   0.9184   0.9476   0.9206
+Pos Pred Value         0.8117   0.6366   0.6194   0.7424   0.6270
+Neg Pred Value         0.9090   0.9238   0.9051   0.9122   0.9723
+Prevalence             0.2963   0.1846   0.1864   0.1950   0.1377
+Detection Rate         0.2312   0.1231   0.1080   0.1216   0.1151
+Detection Prevalence   0.2848   0.1934   0.1744   0.1638   0.1835
+Balanced Accuracy      0.8521   0.7905   0.7490   0.7856   0.8781
+
+INFO [2016-02-26 07:07:23] Model obtained:
+Linear Discriminant Analysis 
+
+15375 samples
+   51 predictor
+    5 classes: 'A', 'B', 'C', 'D', 'E' 
+
+No pre-processing
+Resampling: Bootstrapped (25 reps) 
+Summary of sample sizes: 15375, 15375, 15375, 15375, 15375, 15375, ... 
+Resampling results
+
+  Accuracy  Kappa      Accuracy SD  Kappa SD  
+  0.698716  0.6188272  0.004632152  0.00562982
+
+ 
+
+INFO [2016-02-26 07:07:23] Saving model newmodel-lda-0.8
+
+INFO [2016-02-26 07:07:25] Training accuracy = 0.70530081300813
+INFO [2016-02-26 07:07:25] Testing  accuracy = 0.699036709190315
+
+INFO [2016-02-26 07:07:25] End analysis
+    user   system  elapsed 
+1321.361    9.292    7.544 

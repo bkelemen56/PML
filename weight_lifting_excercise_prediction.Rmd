@@ -1,0 +1,178 @@
+---
+title: "Weight Lifting Excercise Prediction Analysis"
+date: "February 27, 2016"
+output: html_document
+fig_caption: true
+---
+
+```{r initReport1, echo=FALSE, eval=TRUE}
+# source our common files
+suppressMessages(source('common.R'))
+
+# initialize global variables
+invisible(flog.threshold(ERROR))
+invisible(init("rf", 0, 0.8, "cv-10"))
+
+# read datasets
+ds <- read_ml_datasets()
+
+# load the best model obtained
+invisible(model_rf_0.8_cv_10 <- read_model("newmodel-rf-0.8-cv-10"))
+```
+
+# Executive summary
+
+The [weight lifting excercise's](http://groupware.les.inf.puc-rio.br/har) goal is to predict the manner in which a participant performed the *Dumbbell Biceps Curl*  exercise. One correct way of executing this exercise, class ("A"), and four common incorrect classes ("B", "C", "D" and "E") were measured. Features were extracted from various wearable devices incorporated to test subjects and labeled with the corresponding class - correct or incorrect.
+
+The data provided by the authors was cleaned to allow for training and prediction using the `R` `caret` package.
+
+Various models were trained on a testing data-set (80% of the experiment data) and then evaluated against a known testing data-set (20% of the experiment data). Various combinations of training control arguments were also evaluated. 
+
+The best model obtained was random forest with 10 fold cross validation, obtaining an accuracy of 100% on the training data-set and 99.5% on the testing set and an out of sample error or 0.54%.
+
+Finally, this model was used to predict the quiz test file where an accuracy of 100% was obtained.
+
+# Exploratory analysis
+
+The data provided is divided into a [training file](https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv) with 19623 observations of six test subjects, and a [quiz test file](https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv) of 20 observations to predict (where we don't know the actual class of each observation). 
+
+Data exploration was performed to understand the features that the authors used. 
+
+It was initially observed that the rows contained two types of data: rows with a feature `new_window="yes"` and others with `new_window="no"`. The rows with `new_window="yes"` seem to refer to summary values after each exercise, and were removed for the data-set.
+
+Finally, many features were empty or NA, so a subset was selected containing feature names starting with `roll_`,`pitch_`, `yaw_`, `total_`, `gyros_`, `accel_` and `magnet_`. This left 51 features 
+
+To better understand relationships between the resulting features, 16 feature plots were produced. In the appendix, one of these feature plots is included.
+
+# Model selection
+
+## Model evaluation
+
+In order to explore the accuracy of different models, the training file of 19623 observations of six test subjects was divided into a training data-set of 15375 observations (80%), and a testing data-set of 3841 observations (20%) - not to be confused with the quiz testing file. Accuracy was evaluated for both the training and testing data-sets in order to select the best model.
+
+The following models were successfully evaluated: random forest (`rf`), CART (`rpart`), linear discriminant analysis (`lda`), support vector machines with linear kernel (`svmLinear`) and naive bayes (`nb`). Others, such as `ada`, `ada boost`, `bagged ada` were tested, but computation time was excessive and had to be aborted.
+
+Model parameters (ex. `C` in `svmLinear`) were not grid searched due to time limitations.
+
+These are the result for each model and training control tested using 6-core parallel processing:
+
+ Caret model | Training control                          | Accuracy training | Accuracy testing | OOE | Exec time (sec)
+-------------|-------------------------------------------|-------------------|------------------|-----|---------
+ rf          | (default method="boot", number=25)        | 1      | 0.9945 | 0.6%  | 1393.12
+ rf          | method="cv", number=10                    | 1      | 0.9951 | 0.54% | 521.11
+ rf          | method="repeatedcv", number=10, repeats=3 | 1      | 0.9953 | 0.58% | 1443.15
+ rpart       | (default method="boot", number=25)        | 0.5551 | 0.5574 | | 19.36
+ rpart       | method="cv", number=10                    | 0.5551 | 0.5574 | | 18.81
+ rpart       | method="repeatedcv", number=10, repeats=3 | 0.5551 | 0.5574 | | 21.62
+ lda         | (default method="boot", number=25)        | 0.7053 | 0.6990 | | 7.54
+ lda         | method="cv", number=10                    | 0.7053 | 0.6990 | | 5.35
+ lda         | method="repeatedcv", number=10, repeats=3 | 0.7053 | 0.6990 | | 7.11
+ svmlinear   | (default method="boot", number=25)        | 0.7930 | 0.7885 | | 195.69
+ svmLinear   | method="cv", number=10                    | 0.7930 | 0.7885 | | 81.40
+ svmLinear   | method="repeatedcv", number=10, repeats=3 | 0.7930 | 0.7885 | | 171.92
+ nb          | (default method="boot", number=25)        | 0.7477 | 0.7370 | | 712.66
+ nb          | method="cv", number=10                    | 0.7477 | 0.7370 | | 263.36
+ nb          | method="repeatedcv", number=10, repeats=3 | 0.7477 | 0.7370 | | 371.50
+
+As can be seen, random forest produces the best predictions but at the highest cost (time) to train the model, although when used with 10 fold cross validation, the time was reduced by more than half.
+
+Notes:
+
+1. In this data-set, there is no variability in accuracy (except for random forest) when changing the cross validation methods from the default: bootstrap to cross validation or repeated cross validation
+
+2. lda is the fastest model to train
+
+3. Random forest is the slowest to train but produces superior results
+
+## Final model details
+
+The random forest with 10 fold cross validation model obtained is presented below. As a reminder, it was trained with 80% of the training file, reserving 20% for testing.
+
+```{r echo=FALSE, eval=TRUE}
+invisible(flog.threshold(INFO))
+```
+```{r modelDetails, echo=TRUE, eval=TRUE, cache=TRUE}
+print_model_results(model_rf_0.8_cv_10, ds$training_classes, ds$testing_classes, ds$testing_features)
+```
+```{r echo=FALSE, eval=TRUE}
+invisible(flog.threshold(ERROR))
+```
+
+The following figure displays the change in error by classification class and OOB, as the number of trees grows: 
+
+```{r plotMean}
+  # plot the random forest model
+  m <- model_rf_0.8_cv_10$finalModel
+  layout(matrix(c(1,2),nrow=1), width=c(4,1)) 
+  par(mar=c(5,4,4,0)) #No margin on the right side
+  plot(m, log="y", main="Change in error by class vs number of trees")
+  par(mar=c(5,0,4,2)) #No margin on the left side
+  plot(c(0,1),type="n", axes=F, xlab="", ylab="")
+  legend("top", colnames(m$err.rate),col=1:4,cex=.8,fill=1:4,box.lty=0)
+```
+
+The following figure displays the features most important to the model:
+
+```{r}
+# plot the mean decrease gini for top features
+varImpPlot(m, n.var=20, main="Top 20 features by importance")
+```
+
+# Conclusions
+
+Random forest with 10-fold cross validation was found to be the most accurate model for this particular problem. Training on a 6-core machine took almost 10 minutes, but predictions were very good, obtaining 100% accuracy on the quiz data.
+
+Other training control arguments can be evaluated to possibly obtain a better model.
+
+Interesting, the other methods evaluated didn't come close to random forest. Sorted by model accuracy on the testing data-set: random forest (`rf`), support vector machines with linear kernel (`svmLinear`), naive bayes (`nb`), linear discriminant analysis (`lda`) and finally CART (`rpart`).
+
+# Appendix
+
+## Common R code
+
+The following R code was executed at the beginning of this report and is included here for reference.
+
+```{r initReport2, echo=TRUE, eval=FALSE}
+# source our common files
+suppressMessages(source('common.R'))
+
+# initialize global variables
+invisible(flog.threshold(ERROR))
+invisible(init("rf", 0, 0.8, "cv-10"))
+
+# read datasets
+ds <- read_ml_datasets()
+
+# load the best model obtained
+invisible(model_rf_0.8_cv_10 <- read_model("newmodel-rf-0.8-cv-10"))
+```
+
+## Exploratory analysis
+
+As part of the exploratory analysis, feature plots were created with 16 combination of the 51 features. As space doesn't allow, only one chart is presented below of all features that start with `roll`. Similar plots were produced for features names matching these regular expressions: `^pitch_`, `^yaw_`, `^total_`, `^gyros_belt`, `^gyros_arm`, `^gyros_forearm`, `^gyros_dumbbell`, `^accel_belt`, `^accel_arm`, `^accel_forearm`, `^accel_dumbbell`, `^magnet_belt`, `^magnet_arm`, `^magnet_forearm`, `^magnet_dumbbell`, `_belt*`, `_arm*`, `_forearm*` and `_dumbbell*`
+
+```{r fig1, echo=TRUE, eval=TRUE, cache=TRUE, fig.height=6, fig.width=6}
+# function to create scatter plots of sub-sets of features
+scatterPlot <- function(pattern) {
+  featurePlot(x = sample_features[, grep(pattern, names(sample_features), value = TRUE)],
+              y = sample_classes,
+              plot = "pairs",
+              main = paste0("Feature Plot ", pattern),
+              ## Add a key at the top
+              auto.key = list(columns = 5))  
+}
+
+# perform some visualizations on a sample of 500 rows of data
+sample_idx <- sample(length(ds$training_classes), 500)
+sample_features <- ds$training_features[sample_idx, ]
+sample_classes <- ds$training_classes[sample_idx]
+
+# first plot: all features that start with "roll""
+scatterPlot('^roll_')
+```
+
+# References
+
+Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013.
+
+[Read more](http://groupware.les.inf.puc-rio.br/har#weight_lifting_exercises#ixzz41POkr8YW)

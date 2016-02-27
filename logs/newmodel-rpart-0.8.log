@@ -1,0 +1,102 @@
+INFO [2016-02-26 07:07:25] Start analysis
+INFO [2016-02-26 07:07:25] Processing model: newmodel-rpart-0.8
+INFO [2016-02-26 07:07:25] Read datasets
+INFO [2016-02-26 07:07:27]   training has 15375 rows
+INFO [2016-02-26 07:07:27]   testing has 3841 rows
+INFO [2016-02-26 07:07:27] Start training newmodel-rpart-0.8
+Loading required package: rpart
+INFO [2016-02-26 07:07:35] Finished training newmodel-rpart-0.8
+INFO [2016-02-26 07:07:35] Training results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    A    B    C    D    E
+         A 2735  459  853  322    8
+         B  506 1696  613  160    0
+         C   71  117 2130  364    0
+         D  105  358 1345  710    0
+         E   40  688  675  156 1264
+
+Overall Statistics
+                                         
+               Accuracy : 0.5551         
+                 95% CI : (0.5472, 0.563)
+    No Information Rate : 0.3653         
+    P-Value [Acc > NIR] : < 2.2e-16      
+                                         
+                  Kappa : 0.4419         
+ Mcnemar's Test P-Value : < 2.2e-16      
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.7911   0.5112   0.3793  0.41472  0.99371
+Specificity            0.8622   0.8939   0.9434  0.86767  0.88946
+Pos Pred Value         0.6249   0.5701   0.7942  0.28197  0.44775
+Neg Pred Value         0.9344   0.8692   0.7254  0.92207  0.99936
+Prevalence             0.2248   0.2158   0.3653  0.11135  0.08273
+Detection Rate         0.1779   0.1103   0.1385  0.04618  0.08221
+Detection Prevalence   0.2847   0.1935   0.1744  0.16377  0.18361
+Balanced Accuracy      0.8267   0.7025   0.6614  0.64120  0.94158
+
+INFO [2016-02-26 07:07:35] Testing results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction   A   B   C   D   E
+         A 675  96 231  87   5
+         B 111 430 169  33   0
+         C  13  36 529  92   0
+         D  32  98 317 182   0
+         E   8 173 156  43 325
+
+Overall Statistics
+                                          
+               Accuracy : 0.5574          
+                 95% CI : (0.5415, 0.5732)
+    No Information Rate : 0.365           
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.4452          
+ Mcnemar's Test P-Value : < 2.2e-16       
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.8045   0.5162   0.3773  0.41648  0.98485
+Specificity            0.8604   0.8959   0.9422  0.86868  0.89177
+Pos Pred Value         0.6170   0.5787   0.7896  0.28935  0.46099
+Neg Pred Value         0.9403   0.8699   0.7247  0.92061  0.99841
+Prevalence             0.2184   0.2169   0.3650  0.11377  0.08592
+Detection Rate         0.1757   0.1120   0.1377  0.04738  0.08461
+Detection Prevalence   0.2848   0.1934   0.1744  0.16376  0.18355
+Balanced Accuracy      0.8325   0.7061   0.6598  0.64258  0.93831
+
+INFO [2016-02-26 07:07:35] Model obtained:
+CART 
+
+15375 samples
+   51 predictor
+    5 classes: 'A', 'B', 'C', 'D', 'E' 
+
+No pre-processing
+Resampling: Bootstrapped (25 reps) 
+Summary of sample sizes: 15375, 15375, 15375, 15375, 15375, 15375, ... 
+Resampling results across tuning parameters:
+
+  cp          Accuracy   Kappa       Accuracy SD  Kappa SD  
+  0.02591380  0.5627208  0.43956487  0.02910898   0.04519171
+  0.04277141  0.4672213  0.29669899  0.06085090   0.10241800
+  0.11420258  0.3359498  0.07823599  0.03905968   0.05996494
+
+Accuracy was used to select the optimal model using  the largest value.
+The final value used for the model was cp = 0.0259138. 
+
+INFO [2016-02-26 07:07:35] Saving model newmodel-rpart-0.8
+
+INFO [2016-02-26 07:07:44] Training accuracy = 0.555121951219512
+INFO [2016-02-26 07:07:44] Testing  accuracy = 0.557406925279875
+
+INFO [2016-02-26 07:07:44] End analysis
+   user  system elapsed 
+ 27.981   2.837  19.367 

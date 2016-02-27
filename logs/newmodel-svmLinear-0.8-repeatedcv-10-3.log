@@ -1,0 +1,99 @@
+INFO [2016-02-26 21:15:33] Start analysis
+INFO [2016-02-26 21:15:33] Processing model: newmodel-svmLinear-0.8-repeatedcv-10-3
+INFO [2016-02-26 21:15:33] Read datasets
+INFO [2016-02-26 21:15:35]   training has 15375 rows
+INFO [2016-02-26 21:15:35]   testing has 3841 rows
+INFO [2016-02-26 21:15:35] Start training newmodel-svmLinear-0.8-repeatedcv-10-3
+INFO [2016-02-26 21:18:22] Finished training newmodel-svmLinear-0.8-repeatedcv-10-3
+INFO [2016-02-26 21:18:22] Training results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    A    B    C    D    E
+         A 4038   88  118  115   18
+         B  392 2155  166   48  214
+         C  213  220 2123   56   70
+         D  158   91  274 1876  119
+         E  138  380  169  135 2001
+
+Overall Statistics
+                                          
+               Accuracy : 0.793           
+                 95% CI : (0.7865, 0.7994)
+    No Information Rate : 0.3212          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.7369          
+ Mcnemar's Test P-Value : < 2.2e-16       
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.8176   0.7345   0.7449   0.8413   0.8262
+Specificity            0.9675   0.9341   0.9554   0.9512   0.9365
+Pos Pred Value         0.9225   0.7244   0.7916   0.7450   0.7088
+Neg Pred Value         0.9181   0.9372   0.9427   0.9725   0.9665
+Prevalence             0.3212   0.1908   0.1854   0.1450   0.1575
+Detection Rate         0.2626   0.1402   0.1381   0.1220   0.1301
+Detection Prevalence   0.2847   0.1935   0.1744   0.1638   0.1836
+Balanced Accuracy      0.8925   0.8343   0.8501   0.8962   0.8814
+
+INFO [2016-02-26 21:18:22] Testing results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    A    B    C    D    E
+         A 1014   15   26   35    4
+         B   95  538   46   21   43
+         C   57   73  500   26   14
+         D   40   33   64  467   25
+         E   41   75   39   40  510
+
+Overall Statistics
+                                          
+               Accuracy : 0.7886          
+                 95% CI : (0.7753, 0.8014)
+    No Information Rate : 0.3247          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.7311          
+ Mcnemar's Test P-Value : < 2.2e-16       
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.8132   0.7330   0.7407   0.7929   0.8557
+Specificity            0.9692   0.9340   0.9463   0.9502   0.9399
+Pos Pred Value         0.9269   0.7241   0.7463   0.7424   0.7234
+Neg Pred Value         0.9152   0.9367   0.9448   0.9620   0.9726
+Prevalence             0.3247   0.1911   0.1757   0.1533   0.1552
+Detection Rate         0.2640   0.1401   0.1302   0.1216   0.1328
+Detection Prevalence   0.2848   0.1934   0.1744   0.1638   0.1835
+Balanced Accuracy      0.8912   0.8335   0.8435   0.8715   0.8978
+
+INFO [2016-02-26 21:18:22] Model obtained:
+Support Vector Machines with Linear Kernel 
+
+15375 samples
+   51 predictor
+    5 classes: 'A', 'B', 'C', 'D', 'E' 
+
+No pre-processing
+Resampling: Cross-Validated (10 fold, repeated 3 times) 
+Summary of sample sizes: 13838, 13837, 13838, 13837, 13837, 13839, ... 
+Resampling results
+
+  Accuracy   Kappa      Accuracy SD  Kappa SD 
+  0.7830489  0.7241597  0.0120449    0.0154224
+
+Tuning parameter 'C' was held constant at a value of 1
+ 
+
+INFO [2016-02-26 21:18:22] Saving model newmodel-svmLinear-0.8-repeatedcv-10-3
+
+INFO [2016-02-26 21:18:25] Training accuracy = 0.793040650406504
+INFO [2016-02-26 21:18:25] Testing  accuracy = 0.78859671960427
+
+INFO [2016-02-26 21:18:25] End analysis
+   user  system elapsed 
+747.715   7.628 171.922 

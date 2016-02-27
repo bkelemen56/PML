@@ -1,0 +1,102 @@
+INFO [2016-02-26 21:33:17] Start analysis
+INFO [2016-02-26 21:33:17] Processing model: newmodel-nb-0.8-cv-10
+INFO [2016-02-26 21:33:17] Read datasets
+INFO [2016-02-26 21:33:19]   training has 15375 rows
+INFO [2016-02-26 21:33:19]   testing has 3841 rows
+INFO [2016-02-26 21:33:19] Start training newmodel-nb-0.8-cv-10
+Loading required package: klaR
+INFO [2016-02-26 21:34:26] Finished training newmodel-nb-0.8-cv-10
+INFO [2016-02-26 21:34:26] Training results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    A    B    C    D    E
+         A 3922   83  115  240   17
+         B  599 1956  246  142   32
+         C  611  173 1789  101    8
+         D  506    5  295 1605  107
+         E  164  257  102   76 2224
+
+Overall Statistics
+                                          
+               Accuracy : 0.7477          
+                 95% CI : (0.7408, 0.7546)
+    No Information Rate : 0.3774          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.6769          
+ Mcnemar's Test P-Value : < 2.2e-16       
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.6760   0.7906   0.7024   0.7417   0.9313
+Specificity            0.9525   0.9210   0.9304   0.9309   0.9539
+Pos Pred Value         0.8960   0.6575   0.6670   0.6374   0.7878
+Neg Pred Value         0.8291   0.9582   0.9403   0.9565   0.9869
+Prevalence             0.3774   0.1609   0.1657   0.1407   0.1553
+Detection Rate         0.2551   0.1272   0.1164   0.1044   0.1447
+Detection Prevalence   0.2847   0.1935   0.1744   0.1638   0.1836
+Balanced Accuracy      0.8142   0.8558   0.8164   0.8363   0.9426
+
+INFO [2016-02-26 21:37:00] Testing results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction   A   B   C   D   E
+         A 977  19  27  65   6
+         B 180 480  47  30   6
+         C 170  39 428  32   1
+         D 121   3  67 407  31
+         E  39  71  24  32 539
+
+Overall Statistics
+                                          
+               Accuracy : 0.737           
+                 95% CI : (0.7228, 0.7509)
+    No Information Rate : 0.3871          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.6629          
+ Mcnemar's Test P-Value : < 2.2e-16       
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.6570   0.7843   0.7218   0.7191   0.9245
+Specificity            0.9503   0.9186   0.9255   0.9322   0.9490
+Pos Pred Value         0.8931   0.6460   0.6388   0.6471   0.7645
+Neg Pred Value         0.8143   0.9574   0.9480   0.9505   0.9860
+Prevalence             0.3871   0.1593   0.1544   0.1474   0.1518
+Detection Rate         0.2544   0.1250   0.1114   0.1060   0.1403
+Detection Prevalence   0.2848   0.1934   0.1744   0.1638   0.1835
+Balanced Accuracy      0.8037   0.8514   0.8236   0.8256   0.9368
+
+INFO [2016-02-26 21:37:38] Model obtained:
+Naive Bayes 
+
+15375 samples
+   51 predictor
+    5 classes: 'A', 'B', 'C', 'D', 'E' 
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 13838, 13837, 13838, 13837, 13837, 13839, ... 
+Resampling results across tuning parameters:
+
+  usekernel  Accuracy   Kappa      Accuracy SD  Kappa SD  
+  FALSE      0.5020468  0.3852099  0.02002294   0.02072194
+   TRUE      0.7412705  0.6693183  0.01045995   0.01353961
+
+Tuning parameter 'fL' was held constant at a value of 0
+Accuracy was used to select the optimal model using  the largest value.
+The final values used for the model were fL = 0 and usekernel = TRUE. 
+
+INFO [2016-02-26 21:37:38] Saving model newmodel-nb-0.8-cv-10
+
+INFO [2016-02-26 21:37:40] Training accuracy = 0.747707317073171
+INFO [2016-02-26 21:37:40] Testing  accuracy = 0.737047643842749
+
+INFO [2016-02-26 21:37:40] End analysis
+   user  system elapsed 
+322.431   4.164 263.369 

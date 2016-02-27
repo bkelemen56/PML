@@ -1,0 +1,101 @@
+INFO [2016-02-26 20:14:39] Start analysis
+INFO [2016-02-26 20:14:39] Processing model: newmodel-rf-0.8-repeatedcv-10-3
+INFO [2016-02-26 20:14:39] Read datasets
+INFO [2016-02-26 20:14:41]   training has 15375 rows
+INFO [2016-02-26 20:14:41]   testing has 3841 rows
+INFO [2016-02-26 20:14:41] Start training newmodel-rf-0.8-repeatedcv-10-3
+INFO [2016-02-26 20:38:36] Finished training newmodel-rf-0.8-repeatedcv-10-3
+INFO [2016-02-26 20:38:36] Training results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    A    B    C    D    E
+         A 4377    0    0    0    0
+         B    0 2975    0    0    0
+         C    0    0 2682    0    0
+         D    0    0    0 2518    0
+         E    0    0    0    0 2823
+
+Overall Statistics
+                                     
+               Accuracy : 1          
+                 95% CI : (0.9998, 1)
+    No Information Rate : 0.2847     
+    P-Value [Acc > NIR] : < 2.2e-16  
+                                     
+                  Kappa : 1          
+ Mcnemar's Test P-Value : NA         
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            1.0000   1.0000   1.0000   1.0000   1.0000
+Specificity            1.0000   1.0000   1.0000   1.0000   1.0000
+Pos Pred Value         1.0000   1.0000   1.0000   1.0000   1.0000
+Neg Pred Value         1.0000   1.0000   1.0000   1.0000   1.0000
+Prevalence             0.2847   0.1935   0.1744   0.1638   0.1836
+Detection Rate         0.2847   0.1935   0.1744   0.1638   0.1836
+Detection Prevalence   0.2847   0.1935   0.1744   0.1638   0.1836
+Balanced Accuracy      1.0000   1.0000   1.0000   1.0000   1.0000
+
+INFO [2016-02-26 20:38:38] Testing results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    A    B    C    D    E
+         A 1094    0    0    0    0
+         B    0  742    1    0    0
+         C    0    4  662    4    0
+         D    0    0    4  624    1
+         E    0    0    3    1  701
+
+Overall Statistics
+                                          
+               Accuracy : 0.9953          
+                 95% CI : (0.9926, 0.9972)
+    No Information Rate : 0.2848          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.9941          
+ Mcnemar's Test P-Value : NA              
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            1.0000   0.9946   0.9881   0.9921   0.9986
+Specificity            1.0000   0.9997   0.9975   0.9984   0.9987
+Pos Pred Value         1.0000   0.9987   0.9881   0.9921   0.9943
+Neg Pred Value         1.0000   0.9987   0.9975   0.9984   0.9997
+Prevalence             0.2848   0.1942   0.1744   0.1638   0.1828
+Detection Rate         0.2848   0.1932   0.1724   0.1625   0.1825
+Detection Prevalence   0.2848   0.1934   0.1744   0.1638   0.1835
+Balanced Accuracy      1.0000   0.9972   0.9928   0.9952   0.9987
+
+INFO [2016-02-26 20:38:38] Model obtained:
+Random Forest 
+
+15375 samples
+   51 predictor
+    5 classes: 'A', 'B', 'C', 'D', 'E' 
+
+No pre-processing
+Resampling: Cross-Validated (10 fold, repeated 3 times) 
+Summary of sample sizes: 13838, 13837, 13838, 13837, 13837, 13839, ... 
+Resampling results across tuning parameters:
+
+  mtry  Accuracy   Kappa      Accuracy SD  Kappa SD   
+   2    0.9931921  0.9913870  0.001976314  0.002500728
+  27    0.9934305  0.9916888  0.002075507  0.002625926
+  52    0.9886820  0.9856809  0.002713354  0.003432421
+
+Accuracy was used to select the optimal model using  the largest value.
+The final value used for the model was mtry = 27. 
+
+INFO [2016-02-26 20:38:38] Saving model newmodel-rf-0.8-repeatedcv-10-3
+
+INFO [2016-02-26 20:38:42] Training accuracy = 1
+INFO [2016-02-26 20:38:42] Testing  accuracy = 0.995313720385316
+
+INFO [2016-02-26 20:38:42] End analysis
+    user   system  elapsed 
+5546.442   41.109 1443.157 

@@ -1,0 +1,205 @@
+INFO [2016-02-23 22:32:10] Start analysis
+INFO [2016-02-23 22:32:10] Processing model: newmodel-nb-0.7
+INFO [2016-02-23 22:32:10] Read datasets
+INFO [2016-02-23 22:32:12]   training has 13453 rows
+INFO [2016-02-23 22:32:12]   testing has 5763 rows
+INFO [2016-02-23 22:32:12] Start training newmodel-nb-0.7
+INFO [2016-02-23 22:40:01] Finished training newmodel-nb-0.7
+INFO [2016-02-23 22:40:01] Training results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    A    B    C    D    E
+         A 3357   55  150  231   37
+         B  488 1692  237  145   41
+         C  482  153 1613   87   12
+         D  404    7  286 1405  101
+         E  147  183   90   77 1973
+
+Overall Statistics
+                                          
+               Accuracy : 0.7463          
+                 95% CI : (0.7389, 0.7536)
+    No Information Rate : 0.3626          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.6759          
+ Mcnemar's Test P-Value : < 2.2e-16       
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.6882   0.8096   0.6789   0.7224   0.9117
+Specificity            0.9448   0.9198   0.9337   0.9307   0.9560
+Pos Pred Value         0.8765   0.6500   0.6873   0.6378   0.7988
+Neg Pred Value         0.8419   0.9633   0.9313   0.9520   0.9826
+Prevalence             0.3626   0.1554   0.1766   0.1446   0.1609
+Detection Rate         0.2495   0.1258   0.1199   0.1044   0.1467
+Detection Prevalence   0.2847   0.1935   0.1745   0.1638   0.1836
+Balanced Accuracy      0.8165   0.8647   0.8063   0.8265   0.9339
+
+INFO [2016-02-23 22:42:19] Testing results:
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    A    B    C    D    E
+         A 1443   26   67   91   14
+         B  227  709   99   54   26
+         C  261   56  629   52    7
+         D  175    1  158  570   40
+         E   59   71   37   39  852
+
+Overall Statistics
+                                          
+               Accuracy : 0.7293          
+                 95% CI : (0.7176, 0.7407)
+    No Information Rate : 0.3757          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.6535          
+ Mcnemar's Test P-Value : < 2.2e-16       
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.6665   0.8216   0.6354  0.70720   0.9073
+Specificity            0.9450   0.9171   0.9212  0.92455   0.9573
+Pos Pred Value         0.8793   0.6359   0.6259  0.60381   0.8053
+Neg Pred Value         0.8248   0.9669   0.9241  0.95103   0.9815
+Prevalence             0.3757   0.1497   0.1718  0.13986   0.1629
+Detection Rate         0.2504   0.1230   0.1091  0.09891   0.1478
+Detection Prevalence   0.2847   0.1935   0.1744  0.16380   0.1836
+Balanced Accuracy      0.8057   0.8693   0.7783  0.81587   0.9323
+
+INFO [2016-02-23 22:43:16] Model obtained:
+Naive Bayes 
+
+13453 samples
+   51 predictor
+    5 classes: 'A', 'B', 'C', 'D', 'E' 
+
+No pre-processing
+Resampling: Bootstrapped (25 reps) 
+Summary of sample sizes: 13453, 13453, 13453, 13453, 13453, 13453, ... 
+Resampling results across tuning parameters:
+
+  usekernel  Accuracy   Kappa      Accuracy SD  Kappa SD   
+  FALSE      0.5134857  0.3964124  0.033537604  0.034949361
+   TRUE      0.7332778  0.6611256  0.007526121  0.009342329
+
+Tuning parameter 'fL' was held constant at a value of 0
+Accuracy was used to select the optimal model using  the largest value.
+The final values used for the model were fL = 0 and usekernel = TRUE. 
+
+INFO [2016-02-23 22:43:16] Saving model newmodel-nb-0.7
+
+INFO [2016-02-23 22:43:19] Training accuracy = 0.746301940087713
+INFO [2016-02-23 22:43:19] Testing  accuracy = 0.729307652264446
+
+INFO [2016-02-23 22:43:19] End analysis
+    user   system  elapsed 
+1259.933    8.056  668.779 
+There were 50 or more warnings (use warnings() to see the first 50)
+> warnings()
+Warning messages:
+1: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 1
+2: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 2
+3: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 3
+4: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 4
+5: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 5
+6: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 6
+7: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 7
+8: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 8
+9: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 9
+10: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 10
+11: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 11
+12: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 12
+13: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 13
+14: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 14
+15: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 15
+16: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 16
+17: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 17
+18: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 18
+19: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 19
+20: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 20
+21: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 21
+22: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 22
+23: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 23
+24: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 24
+25: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 25
+26: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 26
+27: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 27
+28: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 28
+29: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 29
+30: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 30
+31: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 31
+32: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 32
+33: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 33
+34: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 34
+35: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 35
+36: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 36
+37: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 37
+38: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 38
+39: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 39
+40: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 40
+41: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 41
+42: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 42
+43: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 43
+44: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 44
+45: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 45
+46: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 46
+47: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 47
+48: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 48
+49: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 49
+50: In FUN(X[[i]], ...) :
+  Numerical 0 probability for all classes with observation 50
+  
